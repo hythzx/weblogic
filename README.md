@@ -33,7 +33,13 @@ useradd -s /bin/bash weblogic
 ```
 4. 修改weblogic配置文件
 
+```bash
+vi /home/weblogic/.bash_profile
 ```
+```
+##################################################################
+在 /home/weblogic/.bash_profile 文件追加以下内容
+##################################################################
 export ORACLE_BASE=/home/weblogic/wls/oracle 
 export ORACLE_HOME=$ORACLE_BASE/product/fmw12 
 export MW_HOME=$ORACLE_HOME 
