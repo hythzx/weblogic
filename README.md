@@ -2,7 +2,6 @@
 CentOS7安装weblogic
 
 ## 环境准备
-***
 ### 运行环境
 1. CentOS 7
 2. JDK1.8 (weblogic必须使用JDK)
@@ -13,7 +12,6 @@ CentOS7安装weblogic
 
 
 ## 开始安装
-***
 1. 将jdk和weblogic安装文件下载到 /opt 目录下
 2. 安装JDK 
 ``` bash
@@ -111,7 +109,6 @@ Logs successfully copied to /home/weblogic/wls/oraInventory/logs.
 
 
 ## 创建Domain
-***
 
 ```bash
 cd $WL_HOME
@@ -136,7 +133,6 @@ exit()
 ```
 
 ## 启动weblogic
-***
 
 ```bash
 cd $DOMAIN_HOME
@@ -145,7 +141,6 @@ cd bin/
 ```
 
 ## 访问weblogic
-***
 
 ```
 http://172.17.0.6:7001
