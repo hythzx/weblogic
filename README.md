@@ -53,6 +53,7 @@ useradd -s /bin/bash weblogic
 4. 修改weblogic配置文件
 
 ```bash
+su - weblogic #切换到weblogic用户
 vi /home/weblogic/.bash_profile
 ```
 ```
@@ -81,6 +82,8 @@ mkdir -p $DOMAIN_BASE
 mkdir -p $ORACLE_HOME
 mkdir -p $ORACLE_BASE/config/applications
 mkdir -p /home/weblogic/wls/oraInventory
+chmod -R 775 /home/weblogic/wls
+
 ```
 
 7. 创建静默安装文件
@@ -94,8 +97,8 @@ vi oraInst.loc
 #################################################
  oraInst.loc 
 #################################################
-inventory_loc=/home/weblogic/wls/oraInventory 
-inst_group=weblogic 
+inventory_loc=/home/weblogic/wls/oraInventory
+inst_group=weblogic
 ```
 
 ```bash
@@ -107,17 +110,16 @@ vi wls.rsp
  wls.rsp 
 #################################################
 [ENGINE] 
-Response File Version=1.0.0.0.0 
-[GENERIC] 
-ORACLE_HOME=/home/weblogic/wls/oracle/product/fmw12 
-INSTALL_TYPE=WebLogic Server 
-DECLINE_SECURITY_UPDATES=true 
-SECURITY_UPDATES_VIA_MYORACLESUPPORT=false 
+Response File Version=1.0.0.0.0
+[GENERIC]
+ORACLE_HOME=/home/weblogic/wls/oracle/product/fmw12
+INSTALL_TYPE=WebLogic Server
+DECLINE_SECURITY_UPDATES=true
+SECURITY_UPDATES_VIA_MYORACLESUPPORT=false
 ```
 
 8. 安装weblogic
 ``` bash
-su - weblogic #切换到weblogic用户
 cd /opt/weblogic
 java -jar fmw_12.1.3.0.0_wls.jar -silent -responseFile /home/weblogic/wls/wls.rsp -invPtrLoc /home/weblogic/wls/oraInst.loc
 ```
@@ -165,7 +167,7 @@ cd bin/
 ## 访问weblogic
 
 ```
-http://172.17.0.6:7001
+http://172.17.0.6:7001/console
 用户名: weblogic
 密码: Test1234
 ```
