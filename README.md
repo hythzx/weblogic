@@ -9,7 +9,28 @@ CentOS7安装weblogic
 ### 安装准备
 1. WebLogic(Oracle WebLogic Server 12.1.3 Generic)安装文件: http://www.oracle.com/technetwork/middleware/weblogic/downloads/wls-main-097127.html
 2. JDK安装文件: https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+3. 设置虚拟内存
 
+```bash
+# 添加swap分区
+dd  if=/dev/zero  of=/var/swapfile  bs=1024  count=4048k
+ 
+ 
+# 对交换文件格式化并转换为swap分区
+mkswap  /var/swapfile
+ 
+ 
+# 挂载并激活分区
+swapon   /var/swapfile
+ 
+ 
+# 修改权限
+chmod -R 0600 /var/swapfile
+ 
+ 
+# 设置开机加载分区
+echo  "/var/swapfile   swap  swap  defaults  0  0" >>  /etc/fstab
+```
 
 ## 开始安装
 1. 将jdk和weblogic安装文件下载到 /opt 目录下
@@ -96,6 +117,7 @@ SECURITY_UPDATES_VIA_MYORACLESUPPORT=false
 
 8. 安装weblogic
 ``` bash
+su - weblogic #切换到weblogic用户
 cd /opt/weblogic
 java -jar fmw_12.1.3.0.0_wls.jar -silent -responseFile /home/weblogic/wls/wls.rsp -invPtrLoc /home/weblogic/wls/oraInst.loc
 ```
